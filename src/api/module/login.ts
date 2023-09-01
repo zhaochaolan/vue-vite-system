@@ -6,14 +6,9 @@ interface IReaponseType<P = {}> {
     msg:string;
     data:P;
 }
-
-interface ILogin {
-    token:string;
-    expires:number;
-}
-export const login = (data:ILogin) => {
+export const login = (data:any) => {
     return request<IReaponseType>({
-        url:'',
+        url:'/user/login',
         method:'post',
         data
     })

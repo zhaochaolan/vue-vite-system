@@ -5,7 +5,7 @@ const routes: Array<RouteRecordRaw> = [
     {
         path:'/',
         name:'Home',
-        component:Home
+        component:Home,
     },
     {
         path:'/vuex',
@@ -16,7 +16,12 @@ const routes: Array<RouteRecordRaw> = [
         path:'/axios',
         name:'Axios',
         component:() => import('@/views/axios.vue') //懒加载组件
-    }
+    },
+		{
+			path:'/login',
+			name:'Logn',
+			component:() => import('@/views/login/Login.vue') //懒加载组件
+	},
 ]
 
 const router = createRouter({

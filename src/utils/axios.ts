@@ -1,5 +1,5 @@
 import Axios,{ AxiosResponse,AxiosRequestConfig } from "axios";
-const baseURL = '';
+const baseURL = '/';
 const service = Axios.create({
     baseURL,
     timeout:5000
