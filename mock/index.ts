@@ -41,6 +41,7 @@ export function createFakeUserList() {
 const mock: Array<MockMethod> = [
 	{
 		url:'/user/login',
+		timeout:200,
 		method:'post',
 		response:({body}) => {
 			const {username,password} = body;
@@ -60,6 +61,35 @@ const mock: Array<MockMethod> = [
 				roles
 			})
 		}
+	},
+	{
+		url:'/user/profile',
+		timeout:200,
+		method:'get',
+		response:(request:requestParams) => {
+			const token = getRequestToken(request);
+			if(!token) return resultError('Invalid token');
+			const checkUser = createFakeUserList().find((item) => item.token === token);
+			if(!checkUser) {
+				return resultError('The corresponding user information was not obtained!')
+			}
+			return resultSuccess(checkUser)
+		}
+	},
+	{
+		url:'/user/logout',
+		timeout:200,
+		method:'get',
+		response:(request:requestParams) => {
+			const token = getRequestToken(request);
+			if(!token) return resultError('Invalid token');
+			const checkUser = createFakeUserList().find((item) => item.token === token);
+			if(!checkUser) {
+				return resultError('Invalid token')
+			}
+			return resultSuccess(undefined, {message:'Token has been destroyed'})
+		}
+
 	}
 ]
 
