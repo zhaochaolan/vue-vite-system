@@ -1,4 +1,5 @@
 import Axios,{ AxiosResponse,AxiosRequestConfig } from "axios";
+import { ElMessage } from 'element-plus';
 const baseURL = '/';
 const service = Axios.create({
     baseURL,
@@ -12,11 +13,18 @@ service.interceptors.request.use((response: AxiosRequestConfig) => {
 )
 service.interceptors.response.use(
     (response: AxiosResponse) => {
-        return response
+			const res = response.data;
+			if(res.code !== -1){
+				ElMessage.success(res.message);
+			}else{
+				ElMessage.error(res.message)
+			}
+			return res
     },(error) => {
+			console.log(error)
         if(error.response && error.response.data) {
-            const code = error.response.status
-            const msg = error.response.data.status
+            const code = error.response.data.code
+            const msg = error.response.data.message
             console.error(`Code: ${code}, Message: ${msg}`)
             console.error(`[Axios Error]`, error.response)
         }else {

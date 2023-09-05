@@ -31,6 +31,7 @@ import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import { Lock, User } from '@element-plus/icons-vue';
 import { login } from '@/api/module/login'
+import { useRouter } from 'vue-router'
 interface LoginInfo {
 	username:string
 	password:string
@@ -48,7 +49,7 @@ const validatePassword = (
 		callback()
 	}
 }
-
+const router = useRouter()
 const param = reactive<LoginInfo>({
 	username:'admin',
 	password:'123456'
@@ -80,10 +81,11 @@ const submitLogin = (formEl:FormInstance | undefined) => {
 	formEl.validate((valid: boolean) => {
 		if(valid) {
 			login(param).then((res:any) => {
-				console.log(res)
+				if(!res.code){
+					router.push('/');
+					ElMessage.success('登录成功');
+				}
 			})
-
-			ElMessage.success('登录成功');
 		}else{
 			ElMessage.error('登录失败');
 			return false
