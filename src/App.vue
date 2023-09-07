@@ -8,6 +8,7 @@
 </template>
 
 <style scoped>
+@import './style/index.scss';
 .logo {
   height: 6em;
   padding: 1.5em;

@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { useCounterStore } from '@/store/index'
+
 import { ref } from 'vue'
-const store = useCounterStore();
-const updateCount = () => {
-  store.$patch({
-    count:store.count * 10
-  })
-}
 defineProps<{ msg: string }>()
 
 const count = ref(0)
@@ -17,7 +11,7 @@ const count = ref(0)
   <h1>{{ msg }}</h1>
 
   <div class="card">
-    <button type="button" @click="updateCount">count is {{ store.double }}</button>
+    <button type="button">count is {{ count }}</button>
     <p>
       Edit
       <code>components/HelloWorld.vue</code> to test HMR

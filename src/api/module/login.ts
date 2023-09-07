@@ -28,9 +28,9 @@ const getUserInfo =async () => get<UserState>({
 	url:'/user/profile'
 })
 
-const login =async (params:LoginData) => post<any>({
+const login =async (data:LoginData) => post<any>({
 	url:'/user/login',
-	params
+	data
 })
 
 const logout =async () => post<loginRes>({

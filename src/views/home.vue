@@ -1,8 +1,29 @@
-
 <template>
-    <div>123</div>
-    <HelloWorld msg="test" />
+	<div class="common-layout">
+		<el-container>
+			<el-aside>
+				<vSide/>
+			</el-aside>
+			<el-container>
+				<el-header>
+				<vHeader/>
+			</el-header>
+				<el-main>
+					main
+				</el-main>
+			</el-container>
+		</el-container>
+
+	</div>
+
 </template>
 <script setup lang="ts">
-import HelloWorld from '@/components/HelloWorld.vue'
+import vHeader from '@/components/Header/index.vue'
+import vSide from '@/components/Menu/index.vue'
 </script>
+<style scoped>
+.common-layout{
+	width: 100%;
+	height: 100%;
+}
+</style>

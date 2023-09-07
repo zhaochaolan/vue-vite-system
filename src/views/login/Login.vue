@@ -30,8 +30,8 @@ import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import { Lock, User } from '@element-plus/icons-vue';
-import { login } from '@/api/module/login'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/store';
 interface LoginInfo {
 	username:string
 	password:string
@@ -75,17 +75,14 @@ const rules: FormRules = {
 
 //el-form 组件对象
 const loginForm = ref<FormInstance>();
-
+const userStore = useUserStore();
 const submitLogin = (formEl:FormInstance | undefined) => {
 	if(!formEl) return;
 	formEl.validate((valid: boolean) => {
 		if(valid) {
-			login(param).then((res:any) => {
-				if(!res.code){
-					router.push('/');
-					ElMessage.success('登录成功');
-				}
-			})
+			userStore.login(param);
+			router.push('/');
+			ElMessage.success('登录成功');
 		}else{
 			ElMessage.error('登录失败');
 			return false

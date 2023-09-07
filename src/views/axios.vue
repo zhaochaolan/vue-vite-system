@@ -4,7 +4,7 @@
 <script setup lang="ts">
 import API from '@/api/index'
 const requestRes = async () => {
-    const result = await API.login('zhangsan', '122')
+    const result = await API.login('zhangsan', '1111')
     console.log(result)
 }
 requestRes()
