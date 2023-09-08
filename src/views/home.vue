@@ -9,7 +9,15 @@
 				<vHeader/>
 			</el-header>
 				<el-main>
-					main
+					<router-view v-slot="{Component}">
+						<transition name="move" mode="out-in">
+							<keep-alive>
+								<component :is="Component"></component>
+							</keep-alive>
+
+						</transition>
+
+					</router-view>
 				</el-main>
 			</el-container>
 		</el-container>
