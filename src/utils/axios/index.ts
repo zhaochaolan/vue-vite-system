@@ -3,7 +3,7 @@ import { ElMessage } from 'element-plus';
 import { showMessage } from "./status";
 import { IReaponse } from "./type";
 import { getToken } from "@/utils/auth";
-const baseURL = '/';
+const baseURL = import.meta.env.VITE_APP_BASE_API;
 const service:AxiosInstance = Axios.create({
     baseURL,
     timeout:1000

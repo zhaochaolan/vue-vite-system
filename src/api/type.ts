@@ -8,3 +8,5 @@ export interface RouteItem {
 	redirect?:string,
 	children:RouteItem[]
 }
+
+export type getMenuListResultModel = RouteItem[]

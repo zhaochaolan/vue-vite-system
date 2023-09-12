@@ -19,19 +19,13 @@ import {computed} from 'vue'
 import { useSidebarStore } from '@/store';
 import {useRoute} from 'vue-router'
 import subMenu from './subMenu.vue'
-import {usePermissionStore} from '@/store'
+// import {usePermissionStore} from '@/store'
 const sidebar = useSidebarStore();
 const route = useRoute();
 const onRoutes = computed(() => {
 	return route.path;
 })
-const permissionStore = usePermissionStore();
-const getMenuList = () => {
-	permissionStore.getMenu()
-}
-
-getMenuList();
-
+// const permissionStore = usePermissionStore();
 const menusList = [
 	{
 		path:'/dashboard',

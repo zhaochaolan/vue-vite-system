@@ -1,12 +1,6 @@
 import request from '@/utils/axios/index'
 import { post,get } from '@/utils/axios/index'
-import { UserState } from '@/store/modules/user/type'
-interface IReaponseType<P = {}> {
-    code?:number;
-    status:number;
-    msg:string;
-    data:P;
-}
+import { UserState } from '@/store/type'
 
 // export const login = (data:any) => {
 //     return request<IReaponseType>({

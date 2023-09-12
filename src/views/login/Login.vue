@@ -99,4 +99,43 @@ const submitLogin = (formEl:FormInstance | undefined) => {
 		width: 100%;
 	}
 }
+.login-wrap {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	background-size: 100%;
+}
+.login-title {
+	width: 100%;
+	line-height: 50px;
+	text-align: center;
+	font-size: 20px;
+	color: #fff;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 30px;
+}
+.login-content {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 350px;
+	margin: -190px 0 0 -175px;
+	border-radius: 5px;
+	background: rgba(255, 255, 255, 0.3);
+	overflow: hidden;
+	padding: 30px 30px;
+}
+.login-btn {
+	text-align: center;
+}
+.login-btn button {
+	width: 100%;
+	height: 36px;
+	margin-bottom: 10px;
+}
+.login-tips {
+	font-size: 12px;
+	line-height: 30px;
+	color: #fff;
+}
 </style>

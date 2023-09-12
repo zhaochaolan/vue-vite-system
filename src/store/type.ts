@@ -1,3 +1,5 @@
+import type { RouteRecordRaw } from "vue-router";
+import {RouteRecordName} from 'vue-router'
 export type RoleType = '' | '*' | 'admin' | 'user';
 export interface UserState {
   userId?: string;
@@ -13,4 +15,13 @@ export interface UserState {
   auths?: string[];
   is_admin?: number;
   role?: RoleType;
+}
+
+export interface cacheType {
+	mode?:string;
+	name?:RouteRecordName
+}
+
+export interface menuState{
+	menuRoutes:RouteRecordRaw[]
 }

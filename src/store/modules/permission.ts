@@ -1,23 +1,18 @@
 import { defineStore } from "pinia";
-import {getMenuList} from '@/api/module/menu';
-import {getMenuListResultModel} from '@/api/type'
-interface PermissionState {
-	backMenuList:getMenuListResultModel[]
-}
+// import { getMenuList } from '@/api/module/menu';
+// import { getMenuListResultModel } from '@/api/type'
+import type {menuState} from '../type'
+import routes from "@/router/router";
 export const usePermissionStore = defineStore('permission',{
-	state:():PermissionState => ({
-		backMenuList:[]
-	}),
-	getters:{
-		getBackMenuList():getMenuListResultModel[] {
-			return this.backMenuList;
+	state:():menuState => {
+		return {
+			menuRoutes:routes
 		}
 	},
+	getters:{
+
+	},
 	actions:{
-		async getMenu() {
-			this.backMenuList = await getMenuList();
-			console.log(this.backMenuList)
-			return this.backMenuList;
-		}
+
 	}
 })
