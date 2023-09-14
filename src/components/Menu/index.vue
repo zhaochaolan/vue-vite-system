@@ -19,51 +19,65 @@ import {computed} from 'vue'
 import { useSidebarStore } from '@/store';
 import {useRoute} from 'vue-router'
 import subMenu from './subMenu.vue'
-// import {usePermissionStore} from '@/store'
+import {usePermissionStore} from '@/store'
+import { getMenuList } from '@/api/module/menu'
+
+import { onMounted } from "vue";
 const sidebar = useSidebarStore();
 const route = useRoute();
 const onRoutes = computed(() => {
 	return route.path;
 })
-// const permissionStore = usePermissionStore();
-const menusList = [
-	{
-		path:'/dashboard',
-		name:'home',
-		redirect:'/',
-		meta:{
-			icon:'Odometer',
-			title:'home'
-		},
-		children:[
-			{
-				path:'vuex',
-				name:'vuex',
-				meta:{
-					title:'vuex',
-					hideMenu:true
-				},
-				children:[
-					{
-						path:'vuex',
-						name:'vuex',
-						meta:{
-							title:'vuex',
-							hideMenu:true
-						},
-					}
-				]
-			}
-		]
-	},
-	{
-		path:'/axios',
-		name:'axios',
-		redirect:'/axios',
-		meta:{
-			icon:'Odometer',
-			title:'axios'
-		}
+const permissionStore = usePermissionStore();
+
+// const menusList = [
+// 	{
+// 		path:'/dashboard',
+// 		name:'home',
+// 		redirect:'/',
+// 		meta:{
+// 			icon:'Odometer',
+// 			title:'home'
+// 		},
+// 		children:[
+// 			{
+// 				path:'vuex',
+// 				name:'vuex',
+// 				meta:{
+// 					title:'vuex',
+// 					hideMenu:true
+// 				},
+// 				children:[
+// 					{
+// 						path:'vuex',
+// 						name:'vuex',
+// 						meta:{
+// 							title:'vuex',
+// 							hideMenu:true
+// 						},
+// 					}
+// 				]
+// 			}
+// 		]
+// 	},
+// 	{
+// 		path:'/axios',
+// 		name:'axios',
+// 		redirect:'/axios',
+// 		meta:{
+// 			icon:'Odometer',
+// 			title:'axios'
+// 		}
+// 	}
+// ]
+
+const menusList = permissionStore.routeList;
+
+onMounted(async () => {
+	if(permissionStore.routeList.length < 1) {
+		const routes = await getMenuList();
+		console.log(routes);
+		permissionStore.addRoutes(routes,route)
 	}
-]
+})
 </script>

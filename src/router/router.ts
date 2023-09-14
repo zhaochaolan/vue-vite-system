@@ -20,7 +20,7 @@ const routes: Array<RouteRecordRaw> = [
 				]
     },
 		{
-			path:'/404',
+			path:'/:catchAll(.*)',
 			name:'404',
 			component:() => import('@/views/features/404.vue')
 		},

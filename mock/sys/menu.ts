@@ -1,46 +1,39 @@
 import { MockMethod } from 'vite-plugin-mock'
 import { resultSuccess, resultError, getRequestToken, requestParams } from '../_util'
 import { createFakeUserList } from './user'
-const systemRoute = [
-	{
-		path:'/dashboard',
-		name:'home',
-		redirect:'/',
-		meta:{
-			icon:'Odometer',
-			title:'home'
-		},
-		children:[
-			{
-				path:'vuex',
-				name:'vuex',
-				meta:{
-					title:'vuex',
-					hideMenu:true
-				},
-				children:[
-					{
-						path:'vuex',
-						name:'vuex',
-						meta:{
-							title:'vuex',
-							hideMenu:true
-						},
-					}
-				]
-			}
-		]
+import {system} from '@/enums/router'
+
+const systemRoute = {
+	path:'/system',
+	meta:{
+		icon:'setting',
+		title:'系统管理',
+		rank:system
 	},
-	{
-		path:'/axios',
-		name:'axios',
-		redirect:'/axios',
-		meta:{
-			icon:'Odometer',
-			title:'axios'
+	children:[
+		{
+			path:'/user',
+			name:'user',
+			meta:{
+				icon:'flUser',
+				title:'用户管理',
+				roles:['admin']
+			},
+			component:'system/user.vue'
+		},
+		{
+			path:'/role',
+			name:'role',
+			meta:{
+				icon:'role',
+				title:'角色管理',
+				roles:['admin']
+			},
+			component:'system/role.vue'
+
 		}
-	}
-]
+	]
+}
 
 
 const mock:Array<MockMethod> = [
@@ -55,9 +48,8 @@ const mock:Array<MockMethod> = [
 			if(!checkUser) {
 				return resultError('Invalid token')
 			}
-			const id = checkUser.userId;
-			let menu:object[];
-			menu = systemRoute;
+			// const id = checkUser.userId;
+			const menu = [systemRoute]
 			return resultSuccess(menu);
 		}
 	}

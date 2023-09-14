@@ -9,7 +9,6 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 //mock数据
 import { viteMockServe } from 'vite-plugin-mock'
-import { fa } from 'element-plus/es/locale';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
